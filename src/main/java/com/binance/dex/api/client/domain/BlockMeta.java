@@ -149,8 +149,9 @@ public class BlockMeta {
             return time;
         }
 
-        public void setTime(ZonedDateTime time) {
-            Instant instant = time.toInstant();
+        public void setTime(String time) {
+            ZonedDateTime zdt = ZonedDateTime.parse(time);
+            Instant instant = zdt.toInstant();
             this.time = Date.from(instant);
         }
 
