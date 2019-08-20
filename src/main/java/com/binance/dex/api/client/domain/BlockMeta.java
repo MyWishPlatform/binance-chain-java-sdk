@@ -3,6 +3,8 @@ package com.binance.dex.api.client.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -147,8 +149,9 @@ public class BlockMeta {
             return time;
         }
 
-        public void setTime(Date time) {
-            this.time = time;
+        public void setTime(ZonedDateTime time) {
+            Instant instant = time.toInstant();
+            this.time = Date.from(instant);
         }
 
         public Integer getNumTxs() {
